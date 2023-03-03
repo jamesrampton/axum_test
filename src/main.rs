@@ -19,7 +19,14 @@ async fn main() -> Result<(), anyhow::Error> {
     Ok(())
 }
 
+#[tracing::instrument]
 async fn root_get() -> Html<&'static str> {
-    tracing::info!("getting index");
+    tracing::info!("getting root");
+    html().await
+}
+
+#[tracing::instrument]
+async fn html() -> Html<&'static str> {
+    tracing::info!("getting index html");
     Html(include_str!("index.html"))
 }
